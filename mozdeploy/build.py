@@ -1,21 +1,30 @@
 import os
+import re
 import time
 
-from util import run
+from .util import mkdirp, run
+
+
+def get_clean_version(version):
+    return re.sub(r'[^A-Za-z0-9\.-]', '.', version)
 
 
 def get_build_id(version):
-    return ("%d-%s" % (time.time(), version))[:31]
+    return ("%d-%s" % (time.time(), get_clean_version(version)))[:31]
 
 
 def build_app(command, version, build_id, build_dir):
     """command should be a format string i.e., ./build_app %s %s %s"""
-    run(command % (version, build_id, build_dir), shell=True)
+    out, err = run(command % (version, build_id, build_dir),
+                   stderr_to_stdout=True, shell=True)
+
+    with open(os.path.join(build_dir, build_id, '.build.out'), 'w') as f:
+        f.write(out)
 
 
 def compress_dir(hostroot, build_dir, build_id):
     build_host_dir = os.path.join(hostroot, build_id)
-    run(['mkdir', '-p', build_host_dir])
+    mkdirp(build_host_dir)
     run(['tar', 'cf', '%s/release.tar' % build_host_dir,
          '-C', build_dir, build_id])
 

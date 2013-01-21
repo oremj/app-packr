@@ -3,7 +3,7 @@ from tempfile import NamedTemporaryFile
 
 import requests
 
-from util import run
+from .util import mkdirp, run
 
 
 def get_build_id(pkgroot, build_id):
@@ -11,6 +11,7 @@ def get_build_id(pkgroot, build_id):
         return build_id
 
     r = requests.get('%s/LATEST' % pkgroot)
+    r.raise_for_status()
     return r.text.strip()
 
 
@@ -41,11 +42,11 @@ def run_postinstall(app_dir, build_id):
 
 
 def install_app(pkghost, env, app_dir, app, build_id):
-    run(['mkdir', '-p', app_dir])
+    mkdirp(app_dir)
 
     pkgroot = '%s/%s/%s' % (pkghost, env, app)
 
-    build_id = get_build_id(pkghost, build_id)
+    build_id = get_build_id(pkgroot, build_id)
 
     if not build_exists(app_dir, build_id):
         content = fetch(pkgroot, build_id)
