@@ -18,10 +18,9 @@ def build_app(command, version, build_id, build_dir):
     """command should be a format string i.e., ./build_app %s %s %s"""
     command = command.format(version=version, build_id=build_id,
                              build_dir=build_dir)
-    print "Running: %s" % command
 
-    out, err = run(command % (version, build_id, build_dir),
-                   stderr_to_stdout=True, shell=True)
+    print "Running: %s" % command
+    out, err = run(command, stderr_to_stdout=True, shell=True)
 
     with open(os.path.join(build_dir, build_id, '.build.out'), 'w') as f:
         f.write(out)
