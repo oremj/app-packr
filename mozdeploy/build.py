@@ -11,7 +11,7 @@ def get_clean_version(version):
 
 
 def get_build_id(version):
-    return ("%d-%s" % (time.time(), get_clean_version(version)))[:31]
+    return ("%d-%s" % (time.time(), get_clean_version(version)))[:21]
 
 
 def build_app(command, version, build_id, build_dir):
