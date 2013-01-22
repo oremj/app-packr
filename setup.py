@@ -7,7 +7,7 @@ setup(
     description='Deploy tools',
     author='Jeremy Orem',
     author_email='oremj@mozilla.com',
-    scripts=['scripts/build-app',
-             'scripts/install-app'],
+    scripts=['scripts/mozdeploy-build-app',
+             'scripts/mozdeploy-install-app'],
     packages=['mozdeploy']
 )
