@@ -3,6 +3,7 @@ import re
 import time
 
 from .util import mkdirp, run
+import util
 
 
 def get_clean_version(version):
@@ -34,9 +35,17 @@ def set_latest(hostroot, build_id):
         f.write(build_id)
 
 
-def package_app(hostroot, command, version, build_dir, env, app):
+def cleanup(app_hostroot, build_dir, build_id, keep):
+    build_dir = os.path.join(build_dir, build_id)
+    run(['rm', '-rf', build_dir])
+
+    util.cleanup(app_hostroot, build_id, keep)
+
+
+def package_app(hostroot, command, version, build_dir, env, app, keep=5):
     app_hostroot = os.path.join(hostroot, env, app)
     build_id = get_build_id(version)
     build_app(command, version, build_id, build_dir)
     compress_dir(app_hostroot, build_dir, build_id)
     set_latest(app_hostroot, build_id)
+    cleanup(app_hostroot, build_dir, build_id, keep)
