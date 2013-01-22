@@ -41,7 +41,6 @@ def run_postinstall(releases_dir, build_id):
     build_dir = os.path.join(releases_dir, build_id)
     print build_dir
     if os.path.isfile(os.path.join(build_dir, '.postinstall')):
-        print "RUNNING"
         run(['/bin/bash', '.postinstall'], cwd=build_dir)
 
 

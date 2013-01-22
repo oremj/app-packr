@@ -38,4 +38,5 @@ def cleanup(releases_dir, build_id, keep=5):
             run(['rm', '-rf', os.path.join(releases_dir, r)])
             removed += 1
 
-    print "Removed %d builds" % removed
+    if removed:
+        print "Removed %d builds" % removed
