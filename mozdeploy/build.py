@@ -16,6 +16,7 @@ def get_build_id(version):
 
 def build_app(command, version, build_id, build_dir):
     """command should be a format string i.e., ./build_app %s %s %s"""
+    print "Running: %s" % (command % (version, build_id, build_dir))
     out, err = run(command % (version, build_id, build_dir),
                    stderr_to_stdout=True, shell=True)
 
