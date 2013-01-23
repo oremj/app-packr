@@ -20,7 +20,9 @@ def build_app(command, version, build_id, build_dir):
                              build_dir=build_dir)
 
     print "Running: %s" % command
-    out, err = run(command, stderr_to_stdout=True, shell=True)
+    install_dir = os.path.join(build_dir, build_id)
+    mkdirp(install_dir)
+    out, err = run(command, stderr_to_stdout=True, shell=True, cwd=install_dir)
 
     with open(os.path.join(build_dir, build_id, '.build.out'), 'w') as f:
         f.write(out)
