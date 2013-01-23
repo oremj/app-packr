@@ -16,7 +16,7 @@ def run(cmd, stderr_to_stdout=False, **kwargs):
     out, err = p.communicate()
 
     if p.returncode != 0:
-        raise BadReturnCodeException('Return code: %d' % p.returncode)
+        raise BadReturnCodeException("Return code: %d\n%s" % (p.returncode, out))
 
     return out, err
 
