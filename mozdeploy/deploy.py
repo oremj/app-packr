@@ -44,16 +44,16 @@ def run_postinstall(releases_dir, build_id):
         run(['/bin/bash', '.postinstall'], cwd=build_dir)
 
 
-def install_app(pkghost, app_dir, app, build_id, keep=5):
+def install_app(pkgroot, app_dir, app, build_id, keep=5):
     releases_dir = os.path.join(app_dir, 'releases')
     mkdirp(releases_dir)
 
-    pkgroot = '%s/%s' % (pkghost, app)
+    approot = '%s/%s' % (pkgroot, app)
 
-    build_id = get_build_id(pkgroot, build_id)
+    build_id = get_build_id(approot, build_id)
 
     if not build_exists(app_dir, build_id):
-        content = fetch(pkgroot, build_id)
+        content = fetch(approot, build_id)
         uncompress(content, releases_dir)
 
     symlink_current(app_dir, build_id)
