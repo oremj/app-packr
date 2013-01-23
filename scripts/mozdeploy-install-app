@@ -7,7 +7,6 @@ from mozdeploy import deploy
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--pkghost', required=True)
-parser.add_argument('--env', required=True)
 parser.add_argument('--app_dir', required=True)
 parser.add_argument('--app', required=True)
 parser.add_argument('--build_id', default='LATEST')

@@ -44,11 +44,11 @@ def run_postinstall(releases_dir, build_id):
         run(['/bin/bash', '.postinstall'], cwd=build_dir)
 
 
-def install_app(pkghost, env, app_dir, app, build_id, keep=5):
+def install_app(pkghost, app_dir, app, build_id, keep=5):
     releases_dir = os.path.join(app_dir, 'releases')
     mkdirp(releases_dir)
 
-    pkgroot = '%s/%s/%s' % (pkghost, env, app)
+    pkgroot = '%s/%s' % (pkghost, app)
 
     build_id = get_build_id(pkgroot, build_id)
 

@@ -9,7 +9,6 @@ parser.add_argument('--hostroot', required=True)
 parser.add_argument('--command', required=True)
 parser.add_argument('--version', required=True)
 parser.add_argument('--build_dir', required=True)
-parser.add_argument('--env', required=True)
 parser.add_argument('--app', required=True)
 
 args = parser.parse_args()

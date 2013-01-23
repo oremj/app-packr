@@ -14,7 +14,7 @@ Steps
     * The application may drop a executable install script @ $build_dir/$build_id/.postinstall which will be run after successfully unpacking
 * Create package (tarball/rpm) which includes ./$build_id/* and move the package to our http server at http(s)://$pkgserver/$pkgroot/$app/$build_id/release.tar
    * $pkgroot might be something like addons-dev or addons-stage
-* Write $build_id to $env/$app/LATEST
+* Write $build_id to $app/LATEST
 
 
 Deploy

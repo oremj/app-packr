@@ -47,8 +47,8 @@ def cleanup(app_hostroot, build_dir, build_id, keep):
     util.cleanup(app_hostroot, build_id, keep)
 
 
-def package_app(hostroot, command, version, build_dir, env, app, keep=5):
-    app_hostroot = os.path.join(hostroot, env, app)
+def package_app(hostroot, command, version, build_dir, app, keep=5):
+    app_hostroot = os.path.join(hostroot, app)
     build_id = get_build_id(version)
     build_app(command, version, build_id, build_dir)
     compress_dir(app_hostroot, build_dir, build_id)
