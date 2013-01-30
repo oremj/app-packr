@@ -1,16 +1,37 @@
 #!python
 import argparse
+import json
+import os
 
 from mozdeploy import build
 
+REQUIRED_VALS = ['hostroot', 'command', 'version', 'build_dir', 'app']
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--hostroot', required=True)
-parser.add_argument('--command', required=True)
-parser.add_argument('--version', required=True)
-parser.add_argument('--build_dir', required=True)
-parser.add_argument('--app', required=True)
 
-args = parser.parse_args()
+def error(msg):
+    print msg
+    exit(1)
 
-build.package_app(**vars(args))
+
+manifest = os.path.join(os.getcwd(), 'mozdeploy.json')
+
+if not os.path.isfile(manifest):
+    error("%s does not exist" % manifest)
+
+try:
+    config = json.load(open(manifest))
+except ValueError:
+    error("%s is not valid JSON" % manifest)
+
+pkg_config = {}
+for v in REQUIRED_VALS:
+    try:
+        pkg_config[v] = config[v]
+    except KeyError:
+        error("%s does not contain key: %s" % (manifest, v))
+
+parser = argparse.ArgumentParser(help="A json manifest named 'mozdeploy.json' "
+                                      "must be present in the cwd")
+
+parser.parse_args()
+build.package_app(**pkg_config)

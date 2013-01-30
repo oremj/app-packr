@@ -14,5 +14,3 @@ parser.add_argument('--build_id', default='LATEST')
 args = parser.parse_args()
 
 deploy.install_app(**vars(args))
-
-
