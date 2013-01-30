@@ -5,7 +5,7 @@ import os
 
 from mozdeploy import build
 
-REQUIRED_VALS = ['hostroot', 'command', 'version', 'build_dir', 'app']
+REQUIRED_VALS = ['hostroot', 'command', 'build_dir', 'app']
 
 
 def error(msg):
@@ -30,8 +30,9 @@ for v in REQUIRED_VALS:
     except KeyError:
         error("%s does not contain key: %s" % (manifest, v))
 
-parser = argparse.ArgumentParser(help="A json manifest named 'mozdeploy.json' "
-                                      "must be present in the cwd")
+parser = argparse.ArgumentParser()
 
-parser.parse_args()
+parser.add_argument('-v', '--version', help="Version to build", required=True)
+args = parser.parse_args()
+pkg_config['version'] = args.version
 build.package_app(**pkg_config)
