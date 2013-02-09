@@ -22,7 +22,7 @@ def pip_install(build_dir, requirements):
              '-f', 'https://pyrepo.addons.mozilla.org']
     
     if requirements:
-        flags += ['r', requirements]
+        flags += ['-r', requirements]
 
     run([pip, 'install'] + flags + ['virtualenv'])
 
