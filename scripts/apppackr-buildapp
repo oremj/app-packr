@@ -13,7 +13,7 @@ def error(msg):
     exit(1)
 
 
-manifest = os.path.join(os.getcwd(), 'apppackr.json')
+manifest = os.path.join(os.getcwd(), 'app-packr.json')
 
 if not os.path.isfile(manifest):
     error("%s does not exist" % manifest)
