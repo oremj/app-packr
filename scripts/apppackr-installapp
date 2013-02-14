@@ -2,7 +2,7 @@
 
 import argparse
 
-from mozdeploy import deploy
+from apppackr import deploy
 
 
 parser = argparse.ArgumentParser()

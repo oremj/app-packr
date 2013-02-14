@@ -3,7 +3,7 @@ import argparse
 import json
 import os
 
-from mozdeploy import build
+from apppackr import build
 
 REQUIRED_VALS = ['hostroot', 'command', 'build_dir', 'app']
 
@@ -13,7 +13,7 @@ def error(msg):
     exit(1)
 
 
-manifest = os.path.join(os.getcwd(), 'mozdeploy.json')
+manifest = os.path.join(os.getcwd(), 'apppackr.json')
 
 if not os.path.isfile(manifest):
     error("%s does not exist" % manifest)

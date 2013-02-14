@@ -1,4 +1,4 @@
-from mozdeploy import deploy
+from apppackr import deploy
 
 
 def test_get_build_id():

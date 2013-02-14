@@ -2,12 +2,12 @@ from distutils.core import setup
 
 
 setup(
-    name='mozdeploy',
-    version='0.0.2',
-    description='Deploy tools',
+    name='app-packr',
+    version='0.0.3',
+    description='Tools for building, packaging and deploy applications.',
     author='Jeremy Orem',
     author_email='oremj@mozilla.com',
-    scripts=['scripts/mozdeploy-build-app',
-             'scripts/mozdeploy-install-app'],
-    packages=['mozdeploy']
+    scripts=['scripts/apppackr-buildapp',
+             'scripts/apppackr-installapp'],
+    packages=['apppackr']
 )

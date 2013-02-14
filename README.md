@@ -1,5 +1,12 @@
-mozdeploy
+app-packr
 =========
+app-packr is a tool for packaging and distributing web applications.
+
+### Features
+* Atomic deploys
+    * app-packr will store a configurable amount of old versions on the client and server with a symlink to the currently deployed version.
+* Use a webserver of your choice to host packages
+* (Future) TLS client authentication
 
 Build
 =====

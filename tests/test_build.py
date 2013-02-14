@@ -2,7 +2,7 @@ import os
 from shutil import rmtree
 from tempfile import mkdtemp
 
-from mozdeploy import build
+from apppackr import build
 
 
 ref = '1a2b3c4d5e6f'

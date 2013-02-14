@@ -3,7 +3,7 @@ import shutil
 
 from nose.tools import assert_raises
 from tempfile import mkdtemp
-from mozdeploy import util
+from apppackr import util
 
 
 def test_mkdirp():
